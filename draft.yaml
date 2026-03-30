@@ -1,0 +1,61 @@
+models:
+
+  # User:
+  #   name: string
+  #   jk: enum:laki-laki,perempuan
+  #   telepon: string nullable
+  #   alamat: text nullable
+  #   role: enum:admin,kepsek,guru
+  #   username: string unique
+  #   password: string
+  #   foto: string
+  #   idt: string unique
+  #   relationships:
+  #     hasOne: Admin, Kepsek, Guru
+
+  Admin:
+    user_id: foreign
+
+  Kapus:
+    user_id: foreign
+    nip: string nullable
+    nuptk: string nullable
+
+  Staf:
+    user_id: foreign
+    nip: string nullable
+    nuptk: string nullable
+    relationships:
+      hasOne: Barcode
+      hasMany: Absen
+
+  Tapel:
+    tahun: string
+    semester: enum:1,2
+    mulai: date
+    selesai: date
+    is_aktif: boolean default:false
+    relationships:
+      hasMany: Absen
+
+  Barcode:
+    staf_id: foreign
+    idt: string unique
+
+  Absen:
+    staf_id: foreign
+    tapel_id: foreign
+    status: enum:h,i,s.a
+    type: enum:masuk,pulang
+    tanggal: date
+
+  Libur:
+    tanggal: date
+    keterangan: string
+
+  Sekolah:
+    name: string
+    telepon: string
+    email: string
+    alamat: text
+    logo: string

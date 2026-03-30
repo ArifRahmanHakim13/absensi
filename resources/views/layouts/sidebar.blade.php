@@ -1,0 +1,9 @@
+@can('admin')
+    @include('layouts.sidebar-admin')
+@endcan
+@can('staf')
+    @include('layouts.sidebar-staf')
+@endcan
+@can('kapus')
+    @include('layouts.sidebar-kapus')
+@endcan
